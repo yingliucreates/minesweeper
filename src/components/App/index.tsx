@@ -1,9 +1,19 @@
-import React, { FC } from 'react';
+import React, { FC, useState, ReactNode } from 'react';
 //@ts-ignore
 import NumberDiplay from '../Display/index.tsx';
+//@ts-ignore
+import { generateCells } from '../../utils/index.ts'; //@ts-ignore
+import Button from '../Button/index.tsx';
 import './App.scss';
 
 const App: FC = () => {
+  const [cells, setCells] = useState(generateCells());
+
+  const renderCells = (): ReactNode =>
+    cells.map((row, rowIdx) =>
+      row.map((cell, colIdx) => <Button key={`${rowIdx}-${colIdx}`} />)
+    );
+
   return (
     <div className="App">
       <div className="Header">
@@ -15,7 +25,7 @@ const App: FC = () => {
         </div>
         <NumberDiplay value={5} />
       </div>
-      <div className="Body">Body</div>
+      <div className="Body">{renderCells()}</div>
     </div>
   );
 };
