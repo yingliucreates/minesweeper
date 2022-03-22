@@ -2,16 +2,27 @@ import React, { FC, useState, ReactNode } from 'react';
 //@ts-ignore
 import NumberDiplay from '../Display/index.tsx';
 //@ts-ignore
-import { generateCells } from '../../utils/index.ts'; //@ts-ignore
+import { generateCells } from '../../utils/index.ts';
+//@ts-ignore
 import Button from '../Button/index.tsx';
 import './App.scss';
 
 const App: FC = () => {
   const [cells, setCells] = useState(generateCells());
 
+  console.log(cells);
+
   const renderCells = (): ReactNode =>
     cells.map((row, rowIdx) =>
-      row.map((cell, colIdx) => <Button key={`${rowIdx}-${colIdx}`} />)
+      row.map((cell, colIdx) => (
+        <Button
+          key={`${rowIdx}-${colIdx}`}
+          state={cell.state}
+          value={cell.value}
+          row={rowIdx}
+          col={colIdx}
+        />
+      ))
     );
 
   return (
