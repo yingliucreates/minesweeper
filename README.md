@@ -1,5 +1,7 @@
-##Minesweeper##
+## Minesweeper
 
-![start state](minesweeper1.png)
-![game state](minesweeper2.png)
-![has won](minesweeper3.png)
+Typescript, React, Sass
+
+![start state](minesweeper1.png) {width:100px}
+![game state](minesweeper2.png) {width:100px}
+![has won](minesweeper3.png) {width:100px}
