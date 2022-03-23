@@ -1,5 +1,5 @@
-##Minesweeper
+##Minesweeper##
 
-minesweeper1.png
-minesweeper2.png
-minesweeper3.png
+![start state](minesweeper1.png)
+![game state](minesweeper2.png)
+![has won](minesweeper3.png)
