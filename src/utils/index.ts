@@ -38,5 +38,45 @@ export const generateCells = (): Cell[][] => {
 
     minesPlaced++;
   }
+
+  const dirs = [
+    [1, 1],
+    [1, 0],
+    [1, -1],
+    [0, 1],
+    [0, -1],
+    [-1, 0],
+    [-1, 1],
+    [-1, -1],
+  ];
+
+  //calculate the numbers for each cell
+  for (let rowIdx = 0; rowIdx < MAX_ROWS; rowIdx++) {
+    for (let colIdx = 0; colIdx < MAX_COLS; colIdx++) {
+      const currCell = cells[rowIdx][colIdx];
+      if (currCell.value === CellValue.bomb) continue;
+      let minesCount = 0;
+
+      for (const [dx, dy] of dirs) {
+        const newRowIdx = rowIdx + dx;
+        const newColIdx = colIdx + dy;
+        if (
+          newRowIdx >= 0 &&
+          newRowIdx < MAX_ROWS &&
+          newColIdx >= 0 &&
+          newColIdx < MAX_COLS &&
+          cells[newRowIdx][newColIdx].value === CellValue.bomb
+        ) {
+          minesCount++;
+        }
+      }
+      if (minesCount > 0) {
+        cells[rowIdx][colIdx] = {
+          ...currCell,
+          value: minesCount,
+        };
+      }
+    }
+  }
   return cells;
 };
