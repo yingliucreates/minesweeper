@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, MouseEvent } from 'react';
+import React, { FC, ReactNode } from 'react';
 import './Button.scss';
 //@ts-ignore
 import { CellState, CellValue } from '../../types/index.ts';
@@ -10,6 +10,7 @@ interface ButtonProps {
   value: CellValue;
   onClick(rowParam: number, colParam: number): (...args: any[]) => void;
   onContext(rowParam: number, colParam: number): (...args: any[]) => void;
+  red?: boolean;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -19,8 +20,9 @@ const Button: FC<ButtonProps> = ({
   state,
   onClick,
   onContext,
+  red,
 }) => {
-  const renderContent = (): React.ReactNode => {
+  const renderContent = (): ReactNode => {
     if (state === CellState.visible) {
       if (value === CellValue.bomb) {
         return (
@@ -48,7 +50,7 @@ const Button: FC<ButtonProps> = ({
     <div
       className={`Button ${
         state === CellState.visible ? 'visible' : ''
-      } value-${value}`}
+      } value-${value} ${red ? 'red' : ''}`}
       onClick={onClick(row, col)}
       onContextMenu={onContext(row, col)}
     >

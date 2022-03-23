@@ -80,3 +80,41 @@ export const generateCells = (): Cell[][] => {
   }
   return cells;
 };
+
+const dirs: number[][] = [
+  [1, 1],
+  [1, 0],
+  [1, -1],
+  [0, 1],
+  [0, -1],
+  [-1, 0],
+  [-1, 1],
+  [-1, -1],
+];
+
+const outBound = (board, r, c) =>
+  r < 0 || c < 0 || r >= board.length || c >= board[0].length;
+
+export const openMultipleCells = (
+  cells: Cell[][],
+  r: number,
+  c: number
+): Cell[][] => {
+  let newCells = cells.slice();
+  if (outBound(newCells, r, c)) return;
+  if (newCells[r][c].value === CellValue.bomb) return;
+  if (
+    newCells[r][c].state === CellState.flagged ||
+    newCells[r][c].state === CellState.visible
+  )
+    return;
+  newCells[r][c].state = CellState.visible;
+  if (newCells[r][c].value === CellValue.none) {
+    for (const [dr, dc] of dirs) {
+      const newR = dr + r;
+      const newC = dc + c;
+      openMultipleCells(newCells, newR, newC);
+    }
+  }
+  return newCells;
+};
