@@ -2,5 +2,8 @@
 
 Typescript, React, Sass
 
-:-------------------------:|:-------------------------:|:-------------------------:
-![](minesweeper1.png) | ![](minesweeper2.png) | ![](minesweeper3.png)
+<p float="left">
+  <img src="minesweeper1.png" width="200" />
+  <img src="minesweeper2.png" width="200" /> 
+  <img src="minesweeper3.png" width="200" />
+</p>
