@@ -12,7 +12,7 @@ export const generateCells = (): Cell[][] => {
     for (let col = 0; col < MAX_COLS; col++) {
       cells[row].push({
         value: CellValue.none,
-        state: CellState.visible, //make open later
+        state: CellState.open, //make open later
       });
     }
   }
