@@ -2,6 +2,6 @@
 
 Typescript, React, Sass
 
-![start state](minesweeper1.png) {width:100px}
-![game state](minesweeper2.png) {width:100px}
-![has won](minesweeper3.png) {width:100px}
+<img src="minesweeper1.png" alt="drawing" width="100"/>
+<img src="minesweeper2.png" alt="drawing" width="100"/>
+<img src="minesweeper3.png" alt="drawing" width="100"/>
