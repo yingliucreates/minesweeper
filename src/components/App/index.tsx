@@ -6,17 +6,20 @@ import { generateCells, openMultipleCells } from '../../utils/index.ts';
 //@ts-ignore
 import Button from '../Button/index.tsx';
 //@ts-ignore
+import Level from '../Level/index.tsx';
+//@ts-ignore
 import { Cell, Face, CellState, CellValue } from '../../types/index.ts';
 //@ts-ignore
-import { MAX_ROWS, MAX_COLS } from '../../constants/index.ts';
+import { MAX_ROWS, MAX_COLS, NUMS_MINES } from '../../constants/index.ts';
 import './App.scss';
 
 const App: FC = () => {
-  const [cells, setCells] = useState<Cell[][]>(generateCells());
+  const [level, setLevel] = useState<string>('easy');
+  const [cells, setCells] = useState<Cell[][]>(generateCells(level));
   const [face, setFace] = useState<Face>(Face.smile);
   const [time, setTime] = useState<number>(0);
   const [live, setLive] = useState<boolean>(false);
-  const [mines, setMines] = useState<number>(10);
+  const [mines, setMines] = useState<number>(NUMS_MINES[level]);
   const [hasLost, setHasLost] = useState<boolean>(false);
   const [hasWon, setHasWon] = useState<boolean>(false);
 
@@ -34,10 +37,6 @@ const App: FC = () => {
       window.removeEventListener('mouseup', handleMouseUp);
     };
   }, []);
-
-  useEffect(() => {
-    //check to see if there'no more available spaces to click
-  }, [cells]);
 
   useEffect(() => {
     if (live && time < 999) {
@@ -69,7 +68,7 @@ const App: FC = () => {
     if (!live) {
       let isABomb = newCells[rowParam][colParam].value === CellValue.bomb;
       while (isABomb) {
-        newCells = generateCells();
+        newCells = generateCells(level);
         if (newCells[rowParam][colParam].value !== CellValue.bomb) {
           isABomb = false;
           break;
@@ -97,8 +96,8 @@ const App: FC = () => {
     }
 
     let safeOpenCells = false;
-    for (let r = 0; r < MAX_ROWS; r++) {
-      for (let c = 0; c < MAX_COLS; c++) {
+    for (let r = 0; r < MAX_ROWS[level]; r++) {
+      for (let c = 0; c < MAX_COLS[level]; c++) {
         if (
           cells[r][c].value !== CellValue.bomb &&
           cells[r][c].state === CellState.open
@@ -143,8 +142,8 @@ const App: FC = () => {
     setHasWon(false);
     setLive(false);
     setTime(0);
-    setMines(10);
-    setCells(generateCells());
+    setMines(NUMS_MINES[level]);
+    setCells(generateCells(level));
   };
 
   const renderCells = (): ReactNode =>
@@ -185,19 +184,30 @@ const App: FC = () => {
     return newCells;
   };
 
+  const handleLevelChange = (level: string): void => {
+    setLevel(level);
+    const newCells = generateCells(level);
+    const newMines = NUMS_MINES[level];
+    setCells(newCells);
+    setMines(newMines);
+  };
+
   return (
-    <div className="App">
-      <div className="Header">
-        <NumberDiplay value={mines} />
-        <div className="Face" onClick={handleFaceClick}>
-          <span role="img" aria-label="face">
-            {face}
-          </span>
+    <>
+      <div className="App">
+        <div className="Header">
+          <NumberDiplay value={mines} />
+          <div className="Face" onClick={handleFaceClick}>
+            <span role="img" aria-label="face">
+              {face}
+            </span>
+          </div>
+          <NumberDiplay value={time} />
         </div>
-        <NumberDiplay value={time} />
+        <Level onClick={handleLevelChange} />
+        <div className={`Body ${level}`}>{renderCells()}</div>
       </div>
-      <div className="Body">{renderCells()}</div>
-    </div>
+    </>
   );
 };
 

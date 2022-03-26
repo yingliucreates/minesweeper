@@ -3,13 +3,13 @@ import { MAX_COLS, MAX_ROWS, NUMS_MINES } from '../constants/index.ts';
 //@ts-ignore
 import { Cell, CellValue, CellState } from '../types/index.ts';
 
-export const generateCells = (): Cell[][] => {
+export const generateCells = (level: string): Cell[][] => {
   const cells: Cell[][] = [];
 
   //grenerating all cells;
-  for (let row = 0; row < MAX_ROWS; row++) {
+  for (let row = 0; row < MAX_ROWS[level]; row++) {
     cells.push([]);
-    for (let col = 0; col < MAX_COLS; col++) {
+    for (let col = 0; col < MAX_COLS[level]; col++) {
       cells[row].push({
         value: CellValue.none,
         state: CellState.open, //make open later
@@ -18,9 +18,9 @@ export const generateCells = (): Cell[][] => {
   }
   //randomly placing mines
   let minesPlaced = 0;
-  while (minesPlaced < NUMS_MINES) {
-    const randomRow = Math.floor(Math.random() * MAX_ROWS);
-    const randomCol = Math.floor(Math.random() * MAX_COLS);
+  while (minesPlaced < NUMS_MINES[level]) {
+    const randomRow = Math.floor(Math.random() * MAX_ROWS[level]);
+    const randomCol = Math.floor(Math.random() * MAX_COLS[level]);
     const currCell = cells[randomRow][randomCol];
     if (currCell.value !== CellValue.bomb) {
       cells.map((row, rowIdx) =>
@@ -51,8 +51,8 @@ export const generateCells = (): Cell[][] => {
   ];
 
   //calculate the numbers for each cell
-  for (let rowIdx = 0; rowIdx < MAX_ROWS; rowIdx++) {
-    for (let colIdx = 0; colIdx < MAX_COLS; colIdx++) {
+  for (let rowIdx = 0; rowIdx < MAX_ROWS[level]; rowIdx++) {
+    for (let colIdx = 0; colIdx < MAX_COLS[level]; colIdx++) {
       const currCell = cells[rowIdx][colIdx];
       if (currCell.value === CellValue.bomb) continue;
       let minesCount = 0;
@@ -62,9 +62,9 @@ export const generateCells = (): Cell[][] => {
         const newColIdx = colIdx + dy;
         if (
           newRowIdx >= 0 &&
-          newRowIdx < MAX_ROWS &&
+          newRowIdx < MAX_ROWS[level] &&
           newColIdx >= 0 &&
-          newColIdx < MAX_COLS &&
+          newColIdx < MAX_COLS[level] &&
           cells[newRowIdx][newColIdx].value === CellValue.bomb
         ) {
           minesCount++;
