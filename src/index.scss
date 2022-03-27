@@ -9,13 +9,41 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.Container {
+  color: var(--text-primary);
+  background-color: var(--background);
+  transition: all 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.toggleDark {
+  color: var(--text-primary);
+  background-color: var(--background);
+  transition: all 0.5s;
+  position: absolute;
+  top: 100px;
+  right: 100px;
+  padding: 10px;
+  width: 200px;
+  border-width: 4px;
+}
+
+:root {
+  --background: rgb(236, 236, 236);
+  --text-primary: rgb(24, 23, 23);
+}
+[data-theme='dark'] {
+  --background: rgb(24, 23, 23);
+  --text-primary: rgb(236, 236, 236);
 }

@@ -12,6 +12,7 @@ import { Cell, Face, CellState, CellValue } from '../../types/index.ts';
 //@ts-ignore
 import { MAX_ROWS, MAX_COLS, NUMS_MINES } from '../../constants/index.ts';
 import './App.scss';
+import useLocalStorage from 'use-local-storage';
 
 const App: FC = () => {
   const [level, setLevel] = useState<string>('easy');
@@ -22,6 +23,17 @@ const App: FC = () => {
   const [mines, setMines] = useState<number>(NUMS_MINES[level]);
   const [hasLost, setHasLost] = useState<boolean>(false);
   const [hasWon, setHasWon] = useState<boolean>(false);
+
+  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [theme, setTheme] = useLocalStorage(
+    'theme',
+    defaultDark ? 'dark' : 'light'
+  );
+
+  const switchTheme = (): void => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+  };
 
   useEffect(() => {
     const handleMouseDown = (): void => {
@@ -66,11 +78,11 @@ const App: FC = () => {
   const handleCellClick = (rowParam: number, colParam: number) => () => {
     let newCells = cells.slice();
     if (!live) {
-      let isABomb = newCells[rowParam][colParam].value === CellValue.bomb;
-      while (isABomb) {
+      let isANone = newCells[rowParam][colParam].value === CellValue.none;
+      while (!isANone) {
         newCells = generateCells(level);
-        if (newCells[rowParam][colParam].value !== CellValue.bomb) {
-          isABomb = false;
+        if (newCells[rowParam][colParam].value === CellValue.none) {
+          isANone = true;
           break;
         }
       }
@@ -193,7 +205,10 @@ const App: FC = () => {
   };
 
   return (
-    <>
+    <div className="Container" data-theme={theme}>
+      <button className="toggleDark" onClick={switchTheme}>
+        Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode{' '}
+      </button>
       <div className="App">
         <div className="Header">
           <NumberDiplay value={mines} />
@@ -207,7 +222,7 @@ const App: FC = () => {
         <Level onClick={handleLevelChange} />
         <div className={`Body ${level}`}>{renderCells()}</div>
       </div>
-    </>
+    </div>
   );
 };
 
