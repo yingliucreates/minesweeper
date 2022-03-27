@@ -10,9 +10,9 @@ const LevelButton: FC<LevelButtonProps> = ({ onClick, name }) => {
     onClick(name);
   };
   return (
-    <div className="LevelButton" onClick={handleClick}>
+    <button className="LevelButton" onClick={handleClick}>
       {name}
-    </div>
+    </button>
   );
 };
 

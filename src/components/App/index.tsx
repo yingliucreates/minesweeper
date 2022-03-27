@@ -210,6 +210,7 @@ const App: FC = () => {
       <button className="toggleDark" onClick={switchTheme}>
         Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode{' '}
       </button>
+      <Level onClick={handleLevelChange} />
       <div className="App">
         <div className="Header">
           <NumberDiplay value={mines} />
@@ -220,7 +221,7 @@ const App: FC = () => {
           </div>
           <NumberDiplay value={time} />
         </div>
-        <Level onClick={handleLevelChange} />
+
         <div className={`Body ${level}`}>{renderCells()}</div>
       </div>
     </div>
