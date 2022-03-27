@@ -89,7 +89,7 @@ const App: FC = () => {
       setLive(true);
     }
 
-    const currCell = cells[rowParam][colParam];
+    const currCell = newCells[rowParam][colParam];
 
     if (
       currCell.state === CellState.flagged ||
@@ -111,8 +111,8 @@ const App: FC = () => {
     for (let r = 0; r < MAX_ROWS[level]; r++) {
       for (let c = 0; c < MAX_COLS[level]; c++) {
         if (
-          cells[r][c].value !== CellValue.bomb &&
-          cells[r][c].state === CellState.open
+          newCells[r][c].value !== CellValue.bomb &&
+          newCells[r][c].state === CellState.open
         ) {
           safeOpenCells = true;
           break;
@@ -202,6 +202,7 @@ const App: FC = () => {
     const newMines = NUMS_MINES[level];
     setCells(newCells);
     setMines(newMines);
+    setLive(false);
   };
 
   return (
