@@ -150,6 +150,7 @@ const App: FC = () => {
     };
 
   const handleFaceClick = (): void => {
+    setFace(Face.smile);
     setHasLost(false);
     setHasWon(false);
     setLive(false);
