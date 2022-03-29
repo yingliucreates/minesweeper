@@ -36,11 +36,11 @@ const App: FC = () => {
   };
 
   useEffect(() => {
-    const handleMouseDown = (): void => {
-      setFace(Face.oh);
+    const handleMouseDown = (e: any): void => {
+      if (e.target.className.substr(0, 6) === 'Button') setFace(Face.oh);
     };
-    const handleMouseUp = (): void => {
-      setFace(Face.smile);
+    const handleMouseUp = (e: any): void => {
+      if (e.target.className.substr(0, 6) === 'Button') setFace(Face.smile);
     };
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
