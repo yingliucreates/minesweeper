@@ -1,23 +1,16 @@
 @import '../../styles/index.scss';
-
-// .LevelButton {
-//   // @include borders();
-// }
-
-// .Level {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding: 10px;
-//   margin-top: 5px;
-// }
+@import '../../index.scss';
 
 .LevelButton {
-  @include button;
+  color: var(--text-primary);
+  background-color: var(--background);
+  @include borders(var(--border-top), var(--border-bottom));
   width: 100px;
   text-align: center;
   cursor: pointer;
   border-width: 4px;
+  padding: 10px;
+  margin: 5px;
 }
 
 .Level {
@@ -26,7 +19,6 @@
   transition: all 0.5s;
   position: absolute;
   top: 50px;
-  padding: 10px;
   display: flex;
   justify-content: space-between;
 }

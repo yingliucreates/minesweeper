@@ -1,3 +1,5 @@
+@import './styles/index.scss';
+
 * {
   box-sizing: border-box;
 }
@@ -30,6 +32,7 @@ code {
 .toggleDark {
   color: var(--text-primary);
   background-color: var(--background);
+  @include borders(var(--border-top), var(--border-bottom));
   transition: all 0.5s;
   position: absolute;
   top: 50px;
@@ -42,8 +45,12 @@ code {
 :root {
   --background: rgb(236, 236, 236);
   --text-primary: rgb(24, 23, 23);
+  --border-top: white;
+  --border-bottom: #7b7b7b;
 }
 [data-theme='dark'] {
   --background: rgb(24, 23, 23);
   --text-primary: rgb(236, 236, 236);
+  --border-top: rgb(83, 83, 83);
+  --border-bottom: #2b2a2a;
 }
