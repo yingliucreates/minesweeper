@@ -4,8 +4,4 @@ Typescript, React, Sass
 
 [Play here](https://minesweeperwithdarkmode.herokuapp.com/)
 
-<p float="left">
-  <img src="minesweeper1.png" height="200" />
-  <img src="minesweeper2.png" height="200" /> 
-  <img src="minesweeper3.png" height="200" />
-</p>
+  <img src="https://github.com/yingliucreates/minesweeper/blob/main/minesweeperLevels.gif" height="400" />
