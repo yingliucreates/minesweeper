@@ -1,6 +1,6 @@
 import React, { FC, useState, ReactNode, useEffect, MouseEvent } from 'react';
 //@ts-ignore
-import NumberDiplay from '../Display/index.tsx';
+import NumberDisplay from '../Display/index.tsx';
 //@ts-ignore
 import { generateCells, openMultipleCells } from '../../utils/index.ts';
 //@ts-ignore
@@ -215,13 +215,13 @@ const App: FC = () => {
       <Level onClick={handleLevelChange} />
       <div className="App">
         <div className="Header">
-          <NumberDiplay value={mines} />
+          <NumberDisplay value={mines} />
           <div className="Face" onClick={handleFaceClick}>
             <span role="img" aria-label="face">
               {face}
             </span>
           </div>
-          <NumberDiplay value={time} />
+          <NumberDisplay value={time} />
         </div>
 
         <div className={`Body ${level}`}>{renderCells()}</div>

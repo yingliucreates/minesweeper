@@ -5,7 +5,7 @@ interface NumberDisplayProps {
   value: number;
 }
 
-const NumberDiplay: FC<NumberDisplayProps> = ({ value }) => {
+const NumberDisplay: FC<NumberDisplayProps> = ({ value }) => {
   return (
     <div className="NumberDisplay">
       {value < 0
@@ -15,4 +15,4 @@ const NumberDiplay: FC<NumberDisplayProps> = ({ value }) => {
   );
 };
 
-export default NumberDiplay;
+export default NumberDisplay;
