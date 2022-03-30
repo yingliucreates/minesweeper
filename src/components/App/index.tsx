@@ -204,6 +204,7 @@ const App: FC = () => {
     setCells(newCells);
     setMines(newMines);
     setLive(false);
+    setTime(0);
   };
 
   return (
