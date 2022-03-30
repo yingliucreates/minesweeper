@@ -2,8 +2,6 @@
 
 Typescript, React, Sass
 
-<p float="left">
-  <img src="minesweeper1.png" height="200" />
-  <img src="minesweeper2.png" height="200" /> 
-  <img src="minesweeper3.png" height="200" />
-</p>
+[Play here](https://minesweeperwithdarkmode.herokuapp.com/)
+
+  <img src="minesweeperLevels.gif" height="300" />
