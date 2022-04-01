@@ -86,6 +86,7 @@ const App: FC = () => {
           break;
         }
       }
+
       setLive(true);
     }
 

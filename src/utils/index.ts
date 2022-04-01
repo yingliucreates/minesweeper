@@ -34,9 +34,8 @@ export const generateCells = (level: string): Cell[][] => {
           return cells[randomRow][randomCol];
         })
       );
+      minesPlaced++;
     }
-
-    minesPlaced++;
   }
 
   const dirs = [
