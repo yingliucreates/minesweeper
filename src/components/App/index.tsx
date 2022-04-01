@@ -51,7 +51,7 @@ const App: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (live && time < 999) {
+    if (live && time < 999 && !hasLost && !hasWon) {
       const timer = setInterval(() => {
         setTime(time + 1);
       }, 1000);
@@ -59,7 +59,7 @@ const App: FC = () => {
         clearInterval(timer);
       };
     }
-  }, [live, time]);
+  }, [live, time, hasLost, hasWon]);
 
   useEffect(() => {
     if (hasWon) {
