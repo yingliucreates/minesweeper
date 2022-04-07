@@ -91,14 +91,14 @@ const dirs: number[][] = [
   [-1, -1],
 ];
 
-const outBound = (board, r, c) =>
+const outBound = (board: Cell[][], r: number, c: number): boolean =>
   r < 0 || c < 0 || r >= board.length || c >= board[0].length;
 
 export const openMultipleCells = (
   cells: Cell[][],
   r: number,
   c: number
-): Cell[][] => {
+): Cell[][] | undefined => {
   let newCells = cells.slice();
   if (outBound(newCells, r, c)) return;
   if (newCells[r][c].value === CellValue.bomb) return;
