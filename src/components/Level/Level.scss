@@ -5,6 +5,7 @@
   color: var(--text-primary);
   background-color: var(--background);
   @include borders(var(--border-top), var(--border-bottom));
+  @include button(var(--border-bottom), var(--border-top));
   width: 100px;
   text-align: center;
   cursor: pointer;

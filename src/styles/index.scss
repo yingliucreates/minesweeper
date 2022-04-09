@@ -7,6 +7,16 @@
   border-width: 4px;
 }
 
+@mixin button($left-top: #7b7b7b, $bottom-right: white) {
+  &:active {
+    border-bottom-color: $bottom-right;
+    border-left-color: $left-top;
+    border-right-color: $bottom-right;
+    border-top-color: $left-top;
+  }
+}
+
+/*
 @mixin button {
   &:active {
     border-bottom-color: white;
@@ -15,3 +25,4 @@
     border-top-color: #7b7b7b;
   }
 }
+*/

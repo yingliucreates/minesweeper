@@ -33,6 +33,7 @@ code {
   color: var(--text-primary);
   background-color: var(--background);
   @include borders(var(--border-top), var(--border-bottom));
+  @include button(var(--border-bottom), var(--border-top));
   transition: all 0.5s;
   position: absolute;
   top: 50px;
